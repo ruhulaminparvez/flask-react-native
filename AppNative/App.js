@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from "./components/Home";
 import Create from "./components/Create";
+import Details from './components/Details';
 import Constants from 'expo-constants';
 import 'react-native-gesture-handler';
 
@@ -17,6 +18,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Create" component={Create} />
+        <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
       
 

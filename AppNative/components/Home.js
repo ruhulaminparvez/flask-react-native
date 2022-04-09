@@ -24,13 +24,18 @@ function Home (props){
        
     }, [])
 
+
+    const clickedItem = (data) => {
+        props.navigation.navigate('Details', {data: data})
+    }
+
     
 
 
     const renderData = (item) => {
        return (
             <Card style = {styles.cardStyle}>
-                <Text style = {{ fontSize: 22, fontWeight: 'bold' }}>{item.title}</Text>
+                <Text style = {{ fontSize: 22, fontWeight: 'bold' }}  onPress={() => clickedItem(item)} >{item.title}</Text>
                 <Text style = {{ fontSize: 16 }}>{item.content}</Text>
             </Card>
        );
