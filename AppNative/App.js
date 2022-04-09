@@ -1,21 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from "./components/Home";
+import Create from "./components/Create";
 import Constants from 'expo-constants';
+import 'react-native-gesture-handler';
 
-export default function App() {
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
     <View style={styles.container}>
-      <Home/>
+      
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Create" component={Create} />
+      </Stack.Navigator>
+      
 
     </View>
   );
 }
 
+export default () => {
+  return (
+    <NavigationContainer>
+      <App />
+    </NavigationContainer>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3E497A',
+    backgroundColor: '#56BBF1',
     marginTop:Constants.statusBarHeight
 
   },

@@ -1,20 +1,31 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
 import {Card, FAB} from 'react-native-paper';
 
-function Home (){
+function Home (props){
 
-   const data  = [
-       {id:1, title: "First Title", body: "First Body"},
-       {id:2, title: "Second Title", body: "Second Body"},
-       {id:3, title: "Third Title", body: "Third Body"}
-   ]
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+
+        fetch('http://192.168.127.1:3000/get', {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(article => {
+            setData(article)
+        })
+        .catch(error => console.log(error))
+    }, [])
+
+    
+
 
     const renderData = (item) => {
        return (
             <Card style = {styles.cardStyle}>
                 <Text style = {{ fontSize: 22, fontWeight: 'bold' }}>{item.title}</Text>
-                <Text style = {{ fontSize: 16 }}>{item.body}</Text>
+                <Text style = {{ fontSize: 16 }}>{item.content}</Text>
             </Card>
        );
     }
@@ -32,8 +43,8 @@ function Home (){
                 style = {styles.fab}
                 small = {false}
                 icon = "plus"
-                theme = {{colors:{accent:"#21325E"}}}
-                onPress = {() => console.log("Pressed")}
+                theme = {{colors:{accent:"#56BBF1"}}}
+                onPress = {() => props.navigation.navigate('Create')}
             />
 
         </View>
