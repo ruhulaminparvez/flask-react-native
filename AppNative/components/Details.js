@@ -1,10 +1,27 @@
-import React from 'react'
 import {View, ScrollView } from 'react-native'
 import { Text, Button } from 'react-native-paper'
+import React,  { useState } from 'react'
 
 function Details(props) {
 
     const data = props.route.params.data;
+
+    const deleteData = () => {
+        fetch('Access-Control-Allow-Origin', `http://192.168.127.1:3000/delte/${data.id}`, {
+
+            method: 'DELETE',
+            headers: {
+                 'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify({ title: title, content: content })
+
+        })
+        .then(data => {
+            props.navigation.navigate('Home')
+        })
+        .catch(error => console.log(error))
+    }
 
 
   return (
@@ -18,13 +35,13 @@ function Details(props) {
                 <Button 
                     mode = "contained"
                     icon = {'update'}
-                    onPress = {() => console.log('Edit')}
+                    onPress = {() => props.navigation.navigate('Edit', {data: data})}
                     >Edit</Button>
 
                 <Button 
                     mode = "contained"
                     icon = {'delete'}
-                    onPress = {() => console.log('Delete')}
+                    onPress = {() => deleteData(data)}
                     >Delete</Button>
 
             </View>

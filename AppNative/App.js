@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Home from "./components/Home";
 import Create from "./components/Create";
 import Details from './components/Details';
+import Edit from './components/Edit';
 import Constants from 'expo-constants';
 import 'react-native-gesture-handler';
 
@@ -19,6 +20,7 @@ function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Create" component={Create} />
         <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen name="Edit" component={Edit} />
       </Stack.Navigator>
       
 
